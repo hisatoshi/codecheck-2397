@@ -5,6 +5,7 @@ function Bot(data) {
   this.hash = null;
 }
 
+
 Bot.prototype.generateHash = function() {
   this.hash = (
     scientificNotation(_replaceCharacterToASCIICode(this.command))
