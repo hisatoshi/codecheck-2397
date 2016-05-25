@@ -1,0 +1,7 @@
+build: 
+  - npm install
+web:
+  command: node app/server.js
+  port: 3000
+  console: true
+test: mocha tests --recursive
