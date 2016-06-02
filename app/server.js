@@ -20,14 +20,15 @@ wss.on('connection', function(ws) {
   Connections.push(ws);
 
   ws.on('message', function(message) {
-    var sendData = [message];
     var _ = message.split(' ');
-    if(_[0] === 'bot') {
-      var botMessage = bot.generateMessage(_.slice(1,_.length));
-      sendData.push(sendData);
-    }
-    Connections.broadCast(sendData);
 
+    if(_[0] === 'bot') {
+      bot.generateMessage(_.slice(1,_.length)).then(function(d) {
+        Connections.broadCast([message,d]);
+      });
+    }else{
+      Connections.broadCast([message]);
+    }
   });
 
   ws.on('close', function() {

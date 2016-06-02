@@ -1,21 +1,14 @@
-var Bot = function(initaialValue) {
+var Bot = function() {
   var activityList = require('./botActivityList')();
 
-  var states = {
-
-  };
-  var props = {
-
-  };
-
-  function generateMessage(commands, states, props) {
-    var result = activityList.generate();
-    states = result.newStates;
-    return result.botMessage;
+  function generateMessage(commands) {
+    return new Promise(function(resolve) {
+      resolve(activityList.generate(commands));
+    });
   }
 
   return {
-    generateMessage;
+    generateMessage : generateMessage
   };
 };
 
