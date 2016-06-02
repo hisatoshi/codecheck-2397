@@ -7,7 +7,7 @@ var
   WebSocketServer = require('ws').Server,
   wss = new WebSocketServer({ server: server });
 
-var Bot = require('./bot');
+var bot = require('./bot')();
 var Connections = require('./connections.js')();
 
 app.use(express.static('app'));
@@ -22,10 +22,9 @@ wss.on('connection', function(ws) {
   ws.on('message', function(message) {
     var sendData = [message];
     var _ = message.split(' ');
-    if(_[0] === 'bot' && _.length === 3) {
-      var _bot = new Bot({command : _[1], data : _[2]});
-      _bot.generateHash();
-      sendData.push(_bot.hash);
+    if(_[0] === 'bot') {
+      var botMessage = bot.generateMessage(_.slice(1,_.length));
+      sendData.push(sendData);
     }
     Connections.broadCast(sendData);
 
