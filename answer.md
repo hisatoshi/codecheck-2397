@@ -5,14 +5,20 @@
 
 
 ## 0. デプロイ先のサーバ(Heroku)
-https://my-bot-for-sprint.herokuapp.com/
+https://hisatoshi-app.herokuapp.com/
 
 ## 1. ファイルの機能割り当て説明．
 基本問題では，botクラスがオブジェクトパターンで書かれていました．
 個人的に，リビーリングモジュールパターンが好きなので，こちらに書き直しました．
 
 ### server.js
-基本的に手を加えておりません．
+基本的に手を加えておりませんが，
+portの設定を
+old : port = 3000;
+new : port = process.env.PORT || 3000;
+に変更しました．
+
+これは，元のままだと，herokuにて，エラーが発生し，うまく動かなかったためです．
 
 ### connection.js
 server.jsに通信の汚い部分を書きたくなかったので，こちらにまとめました．
