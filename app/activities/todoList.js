@@ -4,7 +4,7 @@ var ToDoList = function() {
   var dbName = '../datas/todoData.json';
 
   function addToDo(data) {
-    new Promise(function(resolve, reject) {
+    return new Promise(function(resolve, reject) {
       fs.readFile(dbName, 'utf-8', function(err, text) {
         if(err) reject(err);
 
@@ -30,7 +30,7 @@ var ToDoList = function() {
         var keys = Object.keys(_data);
 
         for(var i=0; i < keys.length; i++) {
-          if(_data[keys[i]] === data[0]) {
+          if(keys[i] === data[0]) {
             delete _data[keys[i]];
             break;
           }

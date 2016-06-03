@@ -4,7 +4,8 @@
   "description": "Intermediate level bot challenge for codecheck sprint2",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests --recursive"
+    "test": "mocha tests --recursive",
+    "start": "node ./app/server.js"
   },
   "repository": {
     "type": "git",
@@ -23,14 +24,14 @@
   },
   "homepage": "https://github.com/sukeshni/sprint2-bot-intermediate-challenge#readme",
   "devDependencies": {
+  },
+  "dependencies": {
+    "mongoose": "^4.4.19",
     "chai": "^3.5.0",
     "eslint": "^2.11.1",
     "express": "^4.13.4",
     "http": "0.0.0",
     "url": "^0.11.0",
     "ws": "^1.1.0"
-  },
-  "dependencies": {
-    "mongoose": "^4.4.19"
   }
 }
