@@ -1,7 +1,7 @@
 var DB = function() {
   var mongoose = require('mongoose');
-  var url = 'mongodb://heroku_vl74bkz0:vcf7uagjf1sadkt0nvfvq6ita5@ds023213.mlab.com:23213/heroku_vl74bkz0';
-  //var url = 'mongodb://localhost/herokutest';
+  //var url = 'mongodb://heroku_vl74bkz0:vcf7uagjf1sadkt0nvfvq6ita5@ds023213.mlab.com:23213/heroku_vl74bkz0';
+  var url = 'mongodb://localhost/herokutest';
   var Schema = mongoose.Schema;
 
   var todoSchema = new Schema({
