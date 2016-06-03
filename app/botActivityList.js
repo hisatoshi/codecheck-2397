@@ -4,7 +4,10 @@ var BotActivityList = function() {
   var funcList = {};
   funcList.todoList = require('./activities/todoList.js')();
   funcList.pong = require('./activities/pong.js')();
+  funcList.word = require('./activities/word.js')();
+
   funcList.generateHash = require('./activities/generateHash.js')();
+
 
   /***************************************************************************
   command : 'bot'の後ろに付けられるコマンド
@@ -16,8 +19,10 @@ var BotActivityList = function() {
     {command : ['ping'], func : funcList.pong.pong, args : []},
 
     {command : ['todo', 'add'], func : funcList.todoList.addToDo, args : [2, 4]},
-    {command : ['todo', 'deletes'], func : funcList.todoList.deleteTODo, args : [2,3]},
-    {command : ['todo', 'list'], func : funcList.todoList.listToDo, args : []}
+    {command : ['todo', 'delete'], func : funcList.todoList.deleteToDo, args : [2,3]},
+    {command : ['todo', 'list'], func : funcList.todoList.listToDo, args : []},
+
+    {command : ['rec'], func : funcList.word.findWord, args : [1,2]}
 
     //{command : anything else, func : generateHash, args[2, 3]}
   ];
@@ -37,11 +42,15 @@ var BotActivityList = function() {
           itr=i;
           break;
         }
-
       }
-
       //当てはまらない場合は'?'をbotから返す.
-      if(~itr) {resolve('?');}
+      if(itr === -1) {
+        if(commands.length ===2) {
+          resolve(funcList.generateHash.generate(commands));
+        }else{
+          resolve('?');
+        }
+      }
 
       //当てはまったときは，該当の関数に委譲
       if(List[i].args.length ===2)
@@ -61,8 +70,8 @@ var BotActivityList = function() {
     }
   }
 
-  function _isSameString(string1, string2) {
-    return string1 === string2;
+  function _isSameString(stringArray) {
+    return stringArray[0] === stringArray[1];
   }
 
   function _bothTrue(b1, b2)  {
